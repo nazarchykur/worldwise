@@ -788,6 +788,76 @@ You can use `useNavigate` whenever you need to programmatically navigate between
 
 Using `useNavigate` provides a flexible way to control navigation in your React application, allowing you to create dynamic and interactive user experiences.
 
+# Navigate component
+
+In React Router version 6, the `Navigate` component is used for programmatic navigation within your application. You can use it to navigate to different routes based on user interactions or other conditions. Here's how to use the `Navigate` component:
+
+First, make sure you have imported the `Navigate` component from `'react-router-dom'`.
+
+```jsx
+import { Navigate } from "react-router-dom";
+```
+
+Now, you can use the `Navigate` component in your JSX to trigger navigation. Here are some common use cases:
+
+**1. Navigating to a Specific Route**:
+
+To navigate to a specific route, simply render the `Navigate` component with the `to` prop set to the target route path. This is similar to how you would use a `<Link>` component.
+
+```jsx
+<Navigate to="/about" />
+```
+
+**2. Conditional Navigation**:
+
+You can conditionally navigate based on a condition or user interaction. For example, you can navigate to a different route when a button is clicked:
+
+```jsx
+import { useState } from "react";
+
+function MyComponent() {
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+
+  const handleButtonClick = () => {
+    setShouldNavigate(true);
+  };
+
+  return (
+    <div>
+      <button onClick={handleButtonClick}>Navigate</button>
+      {shouldNavigate && <Navigate to="/target-route" />}
+    </div>
+  );
+}
+```
+
+In this example, the `Navigate` component is rendered when `shouldNavigate` is `true`.
+
+**3. Redirecting After an Action**:
+
+You can use the `Navigate` component to perform a redirect after a specific action. For example, after a successful form submission:
+
+```jsx
+function handleSubmit() {
+  // Perform form submission logic
+  // Redirect to a success page after submission
+  return <Navigate to="/success" />;
+}
+```
+
+**4. Redirecting with State**:
+
+You can pass state information along with the navigation to the target route. This state can be accessed in the target route's component.
+
+```jsx
+const state = { customData: "some data" };
+<Navigate to="/target-route" state={state} />;
+```
+
+In the target route's component, you can access the state using the `useLocation` hook or the `location` prop.
+
+Remember that the `Navigate` component triggers navigation, so you should conditionally render it based on your application's logic to ensure it is displayed at the right time.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
