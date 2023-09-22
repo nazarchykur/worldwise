@@ -14,7 +14,12 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="pricing" element={<Pricing />} />
         <Route path="login" element={<Login />} />
-        <Route path="app" element={<AppLayout />} />
+        <Route path="app" element={<AppLayout />}>
+          <Route index element={<div>index</div>} />
+          <Route path="cities" element={<div>cities</div>} />
+          <Route path="countries" element={<div>countries</div>} />
+          <Route path="forms" element={<div>forms</div>} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
