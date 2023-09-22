@@ -578,6 +578,142 @@ State management in React involves managing and sharing data across components e
 
 The choice of state management technique or library depends on the specific requirements of your application. Simple applications may benefit from React's built-in state or the Context API, while larger and more complex applications may require more robust solutions like Redux or Mobx.
 
+# useSearchParams
+
+The `useSearchParams` hook is part of the React Router library (version 6 and later) and is used for reading and manipulating URL query parameters in your React components. It provides a way to access and modify the query parameters in the URL, which can be useful for various purposes, such as filtering data, controlling the behavior of components, or sharing links with specific configurations.
+
+Here's an example of how to use `useSearchParams`:
+
+```jsx
+import { useSearchParams } from "react-router-dom";
+
+function ProductList() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Read query parameters from the URL
+  const category = searchParams.get("category");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
+
+  // Function to update query parameters
+  const updateSearchParams = (newParams) => {
+    setSearchParams((prevParams) => ({
+      ...prevParams,
+      ...newParams,
+    }));
+  };
+
+  // Function to handle filtering based on query parameters
+  const handleFilter = () => {
+    // Fetch products based on the selected filters
+    // (e.g., category, minPrice, maxPrice)
+  };
+
+  return (
+    <div>
+      <h1>Product List</h1>
+      <label>Category:</label>
+      <input
+        type="text"
+        value={category || ""}
+        onChange={(e) => updateSearchParams({ category: e.target.value })}
+      />
+      <label>Min Price:</label>
+      <input
+        type="number"
+        value={minPrice || ""}
+        onChange={(e) => updateSearchParams({ minPrice: e.target.value })}
+      />
+      <label>Max Price:</label>
+      <input
+        type="number"
+        value={maxPrice || ""}
+        onChange={(e) => updateSearchParams({ maxPrice: e.target.value })}
+      />
+      <button onClick={handleFilter}>Apply Filters</button>
+    </div>
+  );
+}
+
+export default ProductList;
+```
+
+In this example:
+
+- We import and use the `useSearchParams` hook to access and update the URL query parameters.
+
+- We read the query parameters (e.g., `category`, `minPrice`, `maxPrice`) from `searchParams` using the `get` method.
+
+- We define an `updateSearchParams` function to update the query parameters. It takes an object with new parameters and merges them with the existing ones.
+
+- The input fields for category, minPrice, and maxPrice allow users to modify the query parameters, and when the user interacts with these inputs, the URL updates accordingly.
+
+- The "Apply Filters" button triggers the `handleFilter` function, which can fetch products based on the selected filters.
+
+Here's anpther example of using the `useSearchParams` hook to manage and display a user's name from a query parameter in the URL:
+
+```jsx
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+function UserProfile() {
+  const [searchParams] = useSearchParams();
+  const userName = searchParams.get("name");
+  const [inputName, setInputName] = useState(userName || "");
+
+  // Function to update the 'name' query parameter
+  const updateNameInURL = () => {
+    searchParams.set("name", inputName);
+  };
+
+  return (
+    <div>
+      <h1>User Profile</h1>
+      <label>Enter your name:</label>
+      <input
+        type="text"
+        value={inputName}
+        onChange={(e) => setInputName(e.target.value)}
+      />
+      <button onClick={updateNameInURL}>Update Name</button>
+      {userName && <p>Hello, {userName}!</p>}
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+In this example:
+
+- We import the `useSearchParams` hook from `react-router-dom`.
+
+- We use `useSearchParams` to access the URL's query parameters, specifically the 'name' parameter.
+
+- The input field allows the user to enter their name. We use `inputName` to manage the input's value.
+
+- When the user clicks the "Update Name" button, we call the `updateNameInURL` function to update the 'name' query parameter in the URL with the current value of `inputName`.
+
+- Finally, we display a greeting message with the user's name if the 'name' query parameter is present in the URL.
+
+This example demonstrates a basic use case where the URL query parameter ('name') is used to display personalized content based on user input. Users can update their name, and the URL reflects the changes.
+
+**When to Use**:
+
+You can use `useSearchParams` whenever you need to interact with URL query parameters in your React application. Some common use cases include:
+
+1. Implementing search and filtering functionality in your application.
+
+2. Allowing users to share specific views or filtered data by generating shareable URLs.
+
+3. Creating dynamic routing behavior based on query parameters.
+
+4. Storing and restoring application state within the URL for deep linking and navigation history.
+
+5. Implementing SEO-friendly URLs with query parameters for better search engine indexing.
+
+By using `useSearchParams`, you can easily read, update, and synchronize query parameters with your application's state, making it a valuable tool for managing URL-based state.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
