@@ -714,6 +714,80 @@ You can use `useSearchParams` whenever you need to interact with URL query param
 
 By using `useSearchParams`, you can easily read, update, and synchronize query parameters with your application's state, making it a valuable tool for managing URL-based state.
 
+# useNavigate
+
+`useNavigate` is a hook provided by the React Router library (version 6 and later) for programmatically navigating to different routes within your React components. It allows you to trigger route changes without relying on traditional anchor tags or browser navigation.
+
+Here's how to use `useNavigate` and an example of when to use it:
+
+**Usage**:
+
+1. Import `useNavigate` from 'react-router-dom':
+
+   ```jsx
+   import { useNavigate } from "react-router-dom";
+   ```
+
+2. Inside your React component, call `useNavigate` to obtain the navigate function:
+
+   ```jsx
+   const navigate = useNavigate();
+   ```
+
+3. Use the `navigate` function to change the route programmatically.
+
+**Example**:
+
+Suppose you have a React component that includes a button, and you want to navigate to a different route when the button is clicked. Here's an example:
+
+```jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+function Home() {
+  // Obtain the navigate function
+  const navigate = useNavigate();
+
+  // Function to handle the button click and navigate to a new route
+  const handleClick = () => {
+    // Navigate to the '/about' route
+    navigate("/about");
+  };
+
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Welcome to the home page!</p>
+      <button onClick={handleClick}>Go to About</button>
+    </div>
+  );
+}
+
+export default Home;
+```
+
+In this example:
+
+- We import `useNavigate` from 'react-router-dom' and use it to obtain the `navigate` function.
+
+- We define a `handleClick` function that is called when the button is clicked. Inside this function, we use the `navigate` function to change the route to '/about' when the button is clicked.
+
+- When the user clicks the "Go to About" button, the route changes to '/about', and the corresponding component associated with that route (e.g., the About component) is rendered.
+
+**When to Use `useNavigate`**:
+
+You can use `useNavigate` whenever you need to programmatically navigate between different views or routes within your React application. Common use cases include:
+
+- Handling user interactions, such as clicking buttons or links, to navigate to specific pages or sections of your application.
+
+- Implementing form submissions where you want to redirect the user to a different route after form data is processed.
+
+- Building complex navigation logic, such as conditional redirects or navigation based on user authentication status.
+
+- Creating custom navigation components that require programmatic control over route changes.
+
+Using `useNavigate` provides a flexible way to control navigation in your React application, allowing you to create dynamic and interactive user experiences.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
