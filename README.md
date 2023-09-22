@@ -362,6 +362,123 @@ Styling options in React applications can vary depending on your preferences, pr
 
 Choose the styling approach that best fits your project's needs and your team's preferences. React is flexible and can work seamlessly with various styling techniques and tools.
 
+## Using CSS Modules
+
+![Alt text](src/screenshots/ksnip_20230922-123713.png)
+
+![Alt text](src/screenshots/ksnip_20230922-124644.png)
+
+CSS Modules are a popular way to locally scope CSS styles in your React components, preventing style conflicts and providing a component-centric approach to styling. Here's how to use CSS Modules in a React application:
+
+**1. Setup**:
+
+First, ensure that your project supports CSS Modules. Most modern React build tools like Create React App (CRA) and Webpack offer built-in support for CSS Modules. If you're not using such tools, you might need to configure your build system to handle CSS Modules.
+
+**2. Naming Convention**:
+
+In CSS Modules, class names are automatically scoped to the component that imports them. This means you don't need to worry about name clashes or global CSS pollution. Class names often follow the convention of being camelCase.
+
+**3. Create a CSS Module File**:
+
+Create a CSS file with the `.module.css` extension. For example, `MyComponent.module.css`. This naming convention tells your build tool to treat the file as a CSS Module.
+
+```css
+/* MyComponent.module.css */
+
+.myComponent {
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+}
+```
+
+**4. Import and Use CSS Module in React Component**:
+
+Import the CSS Module and use the class names as properties of the imported object.
+
+```jsx
+import React from "react";
+import styles from "./MyComponent.module.css";
+
+function MyComponent() {
+  return <div className={styles.myComponent}>Styled Content</div>;
+}
+
+export default MyComponent;
+```
+
+In this example, `styles.myComponent` is a dynamically generated class name that corresponds to the `myComponent` class defined in `MyComponent.module.css`. This class name is unique to the scope of this component and won't interfere with other components.
+
+**5. Using Multiple Class Names**:
+
+You can use multiple class names and apply conditional styles in the same way:
+
+```jsx
+import React from "react";
+import styles from "./MyComponent.module.css";
+
+function MyComponent() {
+  const isActive = true;
+
+  return (
+    <div className={`${styles.myComponent} ${isActive ? styles.active : ""}`}>
+      Styled Content
+    </div>
+  );
+}
+
+export default MyComponent;
+```
+
+**6. Dynamic Class Names**:
+
+You can also use dynamic class names based on component props or state:
+
+```jsx
+import React from "react";
+import styles from "./MyComponent.module.css";
+
+function MyComponent({ isHighlighted }) {
+  return (
+    <div
+      className={`${styles.myComponent} ${
+        isHighlighted ? styles.highlighted : ""
+      }`}
+    >
+      Styled Content
+    </div>
+  );
+}
+
+export default MyComponent;
+```
+
+**7. Pseudo-selectors and Media Queries**:
+
+CSS Modules can handle pseudo-selectors and media queries just like regular CSS. You can define them in your `.module.css` file as needed.
+
+```css
+/* MyComponent.module.css */
+
+.myComponent {
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+}
+
+.myComponent:hover {
+  background-color: lightblue;
+}
+
+@media (max-width: 768px) {
+  .myComponent {
+    font-size: 14px;
+  }
+}
+```
+
+Using CSS Modules makes it easy to manage styles for individual components, keeps your CSS organized, and helps prevent naming conflicts in your React application.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
