@@ -59,6 +59,54 @@
         "lng": 20.8963924
       },
       "id": 17806750
+    },
+    {
+      "cityName": "Bradford",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2023-09-26T09:04:30.686Z",
+      "notes": "",
+      "position": {
+        "lat": "53.79465207623165",
+        "lng": "-1.7538384981867972"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Lviv",
+      "country": "Ukraine",
+      "emoji": "🇺🇦",
+      "date": "2023-09-26T09:07:52.067Z",
+      "notes": "",
+      "position": {
+        "lat": "49.85168827951044",
+        "lng": "24.028122845818018"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Vienna",
+      "country": "Austria",
+      "emoji": "🇦🇹",
+      "date": "2023-09-26T09:12:27.239Z",
+      "notes": "",
+      "position": {
+        "lat": "48.26749178235836",
+        "lng": "16.34551080118492"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Prague",
+      "country": "Czechia",
+      "emoji": "🇨🇿",
+      "date": "2023-09-26T09:13:32.814Z",
+      "notes": "",
+      "position": {
+        "lat": "50.15490890707384",
+        "lng": "14.43876281641246"
+      },
+      "id": 98443201
     }
   ]
 }
