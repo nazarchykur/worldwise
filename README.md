@@ -951,3 +951,7 @@ Use `useMemo` and `useCallback` in the following situations:
 - **`useCallback`**: Use it to memoize callback functions, especially when passing them as props to child components. Memoizing callbacks ensures that child components don't re-render unnecessarily when the parent component re-renders.
 
 By employing these hooks strategically, you can optimize the performance of your React components, especially in scenarios involving complex computations or callback prop passing.
+
+# Don't Optimize Prematurely
+
+![Alt text](src/screenshots/ksnip_20231004-175635.png)
