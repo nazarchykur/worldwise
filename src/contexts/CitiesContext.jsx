@@ -1,6 +1,7 @@
 import { divIcon } from "leaflet";
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useReducer,
@@ -103,22 +104,25 @@ function CitiesProvider({ children }) {
     getCities();
   }, []);
 
-  async function getCity(id) {
-    if (Number(id) === currentCity.id) return;
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (Number(id) === currentCity.id) return;
 
-    dispatch({ type: "loading" });
-    try {
-      const response = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await response.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch (error) {
-      console.log(error);
-      dispatch({
-        type: "rejected",
-        payload: "There was an error fetching the city with error: " + error,
-      });
-    }
-  }
+      dispatch({ type: "loading" });
+      try {
+        const response = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await response.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "rejected",
+          payload: "There was an error fetching the city with error: " + error,
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   async function addCity(newCity) {
     dispatch({ type: "loading" });
